@@ -5,9 +5,9 @@ const Home: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('english');
 
   const videoOptions = [
-    { value: 'english', label: 'English', url: 'https://www.youtube.com/embed/0qYR-ouQWUc?rel=0&modestbranding=1' },
-    { value: 'hindi-urdu', label: 'Hindi/Urdu', url: 'https://www.youtube.com/embed/XUVh2ZJw9iA?rel=0&modestbranding=1' },
-    { value: 'telugu', label: 'Telugu', url: 'https://www.youtube.com/embed/0cgGtm7KuTE?rel=0&modestbranding=1' }
+    { value: 'english', label: 'English', url: 'https://www.youtube.com/embed/ue4sy8oLqi8?rel=0&modestbranding=1' },
+    { value: 'hindi-urdu', label: 'Hindi/Urdu', url: 'https://www.youtube.com/embed/l9L2djc46JA?rel=0&modestbranding=1' },
+    { value: 'telugu', label: 'Telugu', url: 'https://www.youtube.com/embed/ROZ5I_u6r7M?rel=0&modestbranding=1' }
   ];
 
   const selectedVideo = videoOptions.find(option => option.value === selectedLanguage) || videoOptions[0];
