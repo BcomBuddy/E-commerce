@@ -1,12 +1,14 @@
 import React from 'react';
-import { Home, ShoppingCart, Globe, Shield, CreditCard, Smartphone } from 'lucide-react';
+import { Home, ShoppingCart, Globe, Shield, CreditCard, Smartphone, LogOut } from 'lucide-react';
+import { signOut } from '../firebase/auth';
 
 interface SidebarProps {
   currentModule: string;
   onModuleChange: (module: string) => void;
+  onLogout: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ currentModule, onModuleChange }) => {
+const Sidebar: React.FC<SidebarProps> = ({ currentModule, onModuleChange, onLogout }) => {
   const modules = [
     { id: 'home', title: 'Home', icon: Home },
     { id: 'module1', title: 'Module I: Introduction to E-Commerce', icon: Globe },
@@ -48,6 +50,24 @@ const Sidebar: React.FC<SidebarProps> = ({ currentModule, onModuleChange }) => {
           );
         })}
       </nav>
+      
+      {/* Logout Button */}
+      <div className="absolute bottom-4 left-4 right-4">
+        <button
+          onClick={async () => {
+            try {
+              await signOut();
+              onLogout();
+            } catch (error) {
+              console.error('Sign out error:', error);
+            }
+          }}
+          className="w-full flex items-center gap-3 p-4 rounded-lg text-left transition-all duration-200 text-gray-700 hover:bg-red-50 hover:text-red-700"
+        >
+          <LogOut className="w-5 h-5 flex-shrink-0" />
+          <span className="text-sm font-medium">Sign Out</span>
+        </button>
+      </div>
     </div>
   );
 };
