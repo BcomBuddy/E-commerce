@@ -2,6 +2,7 @@ import {
   signInWithEmailAndPassword, 
   signInWithPopup, 
   GoogleAuthProvider, 
+  sendPasswordResetEmail,
   User,
   AuthError 
 } from 'firebase/auth';
@@ -59,6 +60,18 @@ const handleAuthError = (error: AuthError): string => {
 // Get current user
 export const getCurrentUser = (): User | null => {
   return auth.currentUser;
+};
+
+// Password Reset
+export const resetPassword = async (email: string): Promise<void> => {
+  try {
+    await sendPasswordResetEmail(auth, email, {
+      url: window.location.origin,
+      handleCodeInApp: false
+    });
+  } catch (error) {
+    throw handleAuthError(error as AuthError);
+  }
 };
 
 // Sign out
