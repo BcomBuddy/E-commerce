@@ -87,31 +87,12 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       {isUserAuthenticated ? (
         <div className="flex min-h-screen bg-gray-50">
-          {/* Show SSO user info in header if authenticated via SSO */}
-          {isAuthenticated && user && (
-            <div className="fixed top-0 left-0 right-0 bg-gray-800 text-white p-2 z-50">
-              <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
-                <div className="text-sm">
-                  <span className="font-semibold">Welcome, {user.name}!</span>
-                  <span className="ml-2 text-gray-300">({user.email})</span>
-                  <span className="ml-2 text-gray-400">Role: {user.role}</span>
-                </div>
-                <button 
-                  onClick={logout}
-                  className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm"
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
-          )}
-          
           <Sidebar 
             currentModule={currentModule} 
             onModuleChange={setCurrentModule} 
             onLogout={isAuthenticated ? logout : () => setIsLoggedIn(false)} 
           />
-          <div className="flex-1 ml-80" style={{ marginTop: isAuthenticated ? '40px' : '0' }}>
+          <div className="flex-1 ml-80">
             <main className="p-8">
               {renderModule()}
             </main>
